@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfclrqrmuwed6"]
+
+[ext_resource type="Script" path="res://note.gd" id="1_gmp8r"]
+
+[node name="Note" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gmp8r")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File or Directory"
+position = Vector2i(0, 36)
+size = Vector2i(352, 500)
+visible = true
+exclusive = false
+ok_button_text = "Open"
+file_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 537.0
+offset_top = 11.0
+offset_right = 597.0
+offset_bottom = 34.0
+text = "Привет"
+
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

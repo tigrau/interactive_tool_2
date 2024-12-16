@@ -1,0 +1,141 @@
+[gd_scene load_steps=14 format=3 uid="uid://bvejsirth6pl6"]
+
+[ext_resource type="Script" path="res://scene/note_2.gd" id="1_5g32w"]
+[ext_resource type="PackedScene" uid="uid://2muuoq67rs3h" path="res://scene/star.tscn" id="2_1body"]
+[ext_resource type="Texture2D" uid="uid://bm81lrm6d65c7" path="res://assets/star.png" id="2_e0g01"]
+[ext_resource type="Script" path="res://scene/saver_loader.gd" id="3_gdu01"]
+[ext_resource type="Texture2D" uid="uid://bw6usujt5xavt" path="res://assets/grab.png" id="4_siog7"]
+[ext_resource type="Texture2D" uid="uid://b6gt3dapj1qfp" path="res://assets/star2.png" id="4_x5p78"]
+[ext_resource type="Texture2D" uid="uid://by4jisk2ggqsx" path="res://assets/grab2.png" id="5_3wnhk"]
+[ext_resource type="Texture2D" uid="uid://oh2hsfymbevf" path="res://assets/pen.png" id="5_4vdp1"]
+[ext_resource type="Texture2D" uid="uid://dy7htpxqtpb1p" path="res://assets/book.png" id="6_2budu"]
+[ext_resource type="Texture2D" uid="uid://cs62bytbjucjx" path="res://assets/pen2.png" id="7_jc3nr"]
+[ext_resource type="Texture2D" uid="uid://bdmhjl4wjclqt" path="res://assets/open_book.png" id="7_vpvn2"]
+[ext_resource type="Texture2D" uid="uid://bt462gyu7a0r8" path="res://assets/box_closed.png" id="10_0beku"]
+[ext_resource type="Texture2D" uid="uid://waxt21wbpp7j" path="res://assets/box_opened.png" id="11_ckyc7"]
+
+[node name="Note2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_5g32w")
+star_node = ExtResource("2_1body")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+top_level = true
+z_index = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+columns = 4
+
+[node name="MarkerBtn" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_e0g01")
+texture_pressed = ExtResource("4_x5p78")
+stretch_mode = 5
+
+[node name="GrabBtn" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("4_siog7")
+texture_pressed = ExtResource("5_3wnhk")
+stretch_mode = 5
+
+[node name="EditBtn" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("5_4vdp1")
+texture_pressed = ExtResource("7_jc3nr")
+stretch_mode = 5
+
+[node name="LibBtn" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+action_mode = 0
+texture_normal = ExtResource("6_2budu")
+texture_pressed = ExtResource("7_vpvn2")
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="TrashBtn" type="TextureButton" parent="."]
+top_level = true
+z_index = 2
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = 804.0
+offset_right = 534.0
+offset_bottom = 954.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("10_0beku")
+texture_pressed = ExtResource("11_ckyc7")
+
+[node name="Stars" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="SaverLoader" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_gdu01")
+star_node = ExtResource("2_1body")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 135.0
+offset_top = 171.0
+offset_right = -123.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "';fdlskg;lsdfkgskdl;gs;dkfgsdfl;gsldfgj
+sdfg;ksdf;dsafasfasfasdfadfasdfasdf
+adsfadsfasdfasdfasdfasdfasdfdafs"
+
+[node name="Panel" type="Panel" parent="TextEdit"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[connection signal="pressed" from="GridContainer/MarkerBtn" to="." method="_on_marker_btn_pressed"]
+[connection signal="pressed" from="GridContainer/GrabBtn" to="." method="_on_grab_btn_pressed"]
+[connection signal="pressed" from="GridContainer/EditBtn" to="." method="_on_edit_btn_pressed"]
+[connection signal="toggled" from="GridContainer/LibBtn" to="." method="_on_lib_btn_toggled"]
+[connection signal="text_changed" from="TextEdit" to="." method="_on_text_edit_text_changed"]

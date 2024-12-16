@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Note" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://script/star_data.gd" id="1_7jd4o"]
+[ext_resource type="Script" path="res://script/note_matrix.gd" id="2_70kh4"]
+
+[resource]
+script = ExtResource("2_70kh4")
+id = 7
+preview_pic = "user://preview/pic7.png"
+pic = "user://pic/pic7.png"
+data = Array[ExtResource("1_7jd4o")]([])
+lib = ""

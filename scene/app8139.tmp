@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3 uid="uid://6sw4xv4f1xti"]
+
+[ext_resource type="Script" path="res://scene/app.gd" id="1_1wb8u"]
+[ext_resource type="Texture2D" uid="uid://sl511pj32gsp" path="res://assets/plus.png" id="1_vy2p1"]
+[ext_resource type="Texture2D" uid="uid://cne6vut7k2xbm" path="res://assets/home_white.png" id="3_u7oa7"]
+[ext_resource type="Texture2D" uid="uid://dta0om0mntdyf" path="res://assets/eye_white.png" id="4_41kvp"]
+[ext_resource type="Texture2D" uid="uid://c8x2ys0pgwt5m" path="res://assets/eye_white_close.png" id="5_51pwg"]
+[ext_resource type="Texture2D" uid="uid://df81skbcwfs5n" path="res://assets/wrench.png" id="6_ffcgc"]
+
+[node name="App" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_1wb8u")
+
+[node name="CurrentView" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CurrentView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CurrentView/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CurrentView/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="CurrentView/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+texture_normal = ExtResource("1_vy2p1")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Panel" type="Panel" parent="CurrentView/ScrollContainer/VBoxContainer/HBoxContainer/TextureButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 3
+
+[node name="HomeBtn" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_u7oa7")
+stretch_mode = 5
+
+[node name="ShowBtn" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("4_41kvp")
+texture_pressed = ExtResource("5_51pwg")
+stretch_mode = 5
+
+[node name="TextureButton" type="TextureButton" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("6_ffcgc")
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="CurrentView/ScrollContainer/VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="GridContainer/HomeBtn" to="." method="_on_home_btn_pressed"]
+[connection signal="button_down" from="GridContainer/ShowBtn" to="." method="_on_show_btn_button_down"]
+[connection signal="toggled" from="GridContainer/ShowBtn" to="." method="_on_show_btn_toggled"]

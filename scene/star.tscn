@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://2muuoq67rs3h"]
+
+[ext_resource type="Script" path="res://star.gd" id="1_emi23"]
+[ext_resource type="Texture2D" uid="uid://bm81lrm6d65c7" path="res://assets/star.png" id="2_ydka7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ripj3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hmwn3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qyigv"]
+
+[node name="Star" type="TextureButton" groups=["things_to_save"]]
+top_level = true
+z_index = 1
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 24.0
+offset_bottom = 24.0
+pivot_offset = Vector2(25.61, 25.93)
+texture_normal = ExtResource("2_ydka7")
+script = ExtResource("1_emi23")
+
+[node name="Line" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 14.0
+offset_right = 169.0
+offset_bottom = 37.0
+theme_override_constants/outline_size = 25
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ripj3")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_hmwn3")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qyigv")
+text = "Плейсхолдер"
+editable = false
+expand_to_text_length = true
+caret_blink = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 61.0
+offset_top = 14.0
+offset_right = 168.0
+offset_bottom = 37.0
+mouse_filter = 1
+text = "Плейсхолдер"
+
+[connection signal="button_down" from="." to="." method="_on_texture_button_button_down"]
+[connection signal="button_up" from="." to="." method="_on_texture_button_button_up"]
+[connection signal="gui_input" from="." to="." method="_on_texture_button_gui_input"]
+[connection signal="text_changed" from="Line" to="." method="_on_text_changed"]
